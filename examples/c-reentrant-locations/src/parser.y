@@ -20,20 +20,20 @@ void yyerror (YYLTYPE*, yyscan_t, char const*);
   char* str;
 }
 
+%token END 0
 %token <str> STRING
 %token <num> NUMBER
 
 /* note the following is not a good practice but just example code */
-/* TODO expect EOF at end of assignment */
 %%
 
 assignment:
-    STRING '=' NUMBER ';'             { printf( "(assign %s %d)", $1, $3 ); }
-|   STRING '=' NUMBER '+' NUMBER ';'  { printf( "(assign %s (%d + %d))", $1, $3, $5 ); }
-|   STRING '=' NUMBER '-' NUMBER ';'  { printf( "(assign %s (%d - %d))", $1, $3, $5 ); }
-|   STRING '=' NUMBER '/' NUMBER ';'  { printf( "(assign %s (%d / %d))", $1, $3, $5 ); }
-|   STRING '=' NUMBER '*' NUMBER ';'  { printf( "(assign %s (%d * %d))", $1, $3, $5 ); }
-|   STRING '=' NUMBER '%' NUMBER ';'  { printf( "(assign %s (%d %% %d))", $1, $3, $5 ); }
+    STRING '=' NUMBER ';' END            { printf( "(assign %s %d)", $1, $3 ); }
+|   STRING '=' NUMBER '+' NUMBER ';' END { printf( "(assign %s (%d + %d))", $1, $3, $5 ); }
+|   STRING '=' NUMBER '-' NUMBER ';' END { printf( "(assign %s (%d - %d))", $1, $3, $5 ); }
+|   STRING '=' NUMBER '/' NUMBER ';' END { printf( "(assign %s (%d / %d))", $1, $3, $5 ); }
+|   STRING '=' NUMBER '*' NUMBER ';' END { printf( "(assign %s (%d * %d))", $1, $3, $5 ); }
+|   STRING '=' NUMBER '%' NUMBER ';' END { printf( "(assign %s (%d %% %d))", $1, $3, $5 ); }
 ;
 
 %%
